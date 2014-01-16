@@ -41,7 +41,7 @@ gt.async('.slow requests are slow', function () {
     gt.equal(data[0].statusCode, 200, 'code 200');
     var end = new Date();
     var ms = end - start;
-    gt.ok(ms >= 500 && ms < 600, 'server responded in', ms, 'not in 500ms');
+    gt.ok(ms >= 500, 'server responded in', ms, 'not in 500ms');
   })
   .fail(function (err) {
     gt.ok(false, err);
@@ -58,7 +58,7 @@ gt.async('.very-slow requests are slow too', function () {
     gt.equal(data[0].statusCode, 200, 'code 200');
     var end = new Date();
     var ms = end - start;
-    gt.ok(ms >= 500 && ms < 600, 'server responded in', ms, 'not in 500ms');
+    gt.ok(ms >= 500, 'server responded in', ms, 'not in 500ms');
   })
   .fail(function (err) {
     gt.ok(false, err);
@@ -75,7 +75,7 @@ gt.async('very requests are still fast', function () {
     gt.equal(data[0].statusCode, 200, 'code 200');
     var end = new Date();
     var ms = end - start;
-    gt.ok(ms >= 0 && ms < 50, 'server responded in', ms);
+    gt.ok(ms >= 0 && ms < 100, 'server responded in', ms);
   })
   .fail(function (err) {
     gt.ok(false, err);
