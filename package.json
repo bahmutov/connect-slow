@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt && npm run e2e",
-    "e2e": "node node_modules/gt test/test.js --output"
+    "e2e": "node node_modules/gt test/*.js --output"
   },
   "repository": {
     "type": "git",

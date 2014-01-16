@@ -1,9 +1,13 @@
 /*global gt:false*/
+var slow = require('..');
+gt.test('basic info', function () {
+  gt.func(slow, 'connect-slow is a function');
+});
+
 var connect = require('connect');
 var q = require('q');
 var request = q.denodeify(require('request'));
 var http = require('http');
-var slow = require('..');
 
 var port = 3440;
 var msg = 'hello world';
@@ -11,11 +15,10 @@ function sendMessage(req, res) {
   res.end(msg);
 }
 
-gt.module('connect-slow default options tests', {
+gt.module('without connect-slow tests', {
   setupOnce: function () {
     var app = connect()
     .use(connect.logger('dev'))
-    .use(slow())
     .use(sendMessage);
     this.server = http.createServer(app).listen(port);
   },
