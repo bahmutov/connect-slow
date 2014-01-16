@@ -37,7 +37,8 @@
     "grunt-jsonlint": "~1.0.4",
     "grunt-complexity": "~0.1.4",
     "grunt-nice-package": "~0.1.5",
-    "jshint-stylish": "~0.1.5"
+    "jshint-stylish": "~0.1.5",
+    "grunt-bump": "0.0.13"
   },
   "dependencies": {
     "lodash.isregexp": "~2.4.1"
