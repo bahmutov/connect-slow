@@ -19,10 +19,64 @@
 
 
 
+```js
+var connect = require('connect');
+var http = require('http');
+var slow = require('connect-slow');
+var app = connect()
+    .use(connect.logger('dev'))
+    .use(slow({
+        url: /\.jpg$/i,
+        delay: 2000
+    }))
+    .use(connect.static('public'));
+http.createServer(app).listen(4000);
+$ curl http://localhost:4000/index.html  // 1 ms
+$ curl http://localhost:4000/foto.jpg    // 2001 ms
+```
+
+
 install:
 
 ```
 npm install connect-slow --save
+```
+
+slow down every requst by 1 second (default delay value)
+
+```js
+var slow = require('connect-slow');
+var app = connect()
+    .use(slow())
+    ...
+```
+slow down JPEG images by 500ms,
+let everything else be served as quick as possible
+
+```js
+var slow = require('connect-slow');
+var app = connect()
+    .use(slow({
+        url: /\.[jpg|jpeg]$/i,
+        delay: 500
+    }))
+    ...
+```
+
+slow down JPEG images by 1000ms, slow down JavaScript files by 100ms
+
+```js
+var slow = require('connect-slow');
+var app = connect()
+    .use(slow({
+        url: /\.[jpg|jpeg]$/i,
+        delay: 1000
+    }))
+    .use(slow({
+        url: /\.js$/i,
+        delay: 100
+    }))
+    ...
 ```
 
 #### Related projects
