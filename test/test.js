@@ -34,7 +34,7 @@ gt.async('simple test', function () {
     gt.equal(data[1], msg, 'correct message');
     var end = new Date();
     var ms = end - start;
-    gt.ok(ms < 100, 'server responded in', ms, 'less than 100ms');
+    gt.ok(ms >= 1000 && ms < 1100, 'server responded in', ms, 'not in 1000ms');
   })
   .fail(function (err) {
     gt.ok(false, err);
