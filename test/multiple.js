@@ -13,43 +13,16 @@ function sendMessage(req, res) {
   res.end(msg);
 }
 
-gt.module('connect-slow default options tests', {
-  setupOnce: function () {
-    var app = connect()
-    .use(connect.logger('dev'))
-    .use(slow())
-    .use(sendMessage);
-    this.server = http.createServer(app).listen(port);
-  },
-  teardownOnce: function () {
-    this.server.close();
-    delete this.server;
-  }
-});
-
-gt.async('slow everything down', function () {
-  var start = new Date();
-  request(url)
-  .then(function (data) {
-    gt.equal(data[0].statusCode, 200, 'code 200');
-    var end = new Date();
-    var ms = end - start;
-    gt.ok(ms >= 1000 && ms < 1100, 'server responded in', ms, 'not in 1000ms');
-  })
-  .fail(function (err) {
-    gt.ok(false, err);
-  })
-  .finally(function () {
-    gt.start();
-  });
-});
-
-gt.module('connect-slow some resources', {
+gt.module('multiple connect-slow', {
   setupOnce: function () {
     var app = connect()
     .use(connect.logger('dev'))
     .use(slow({
       url: /\.slow$/i,
+      delay: 500
+    }))
+    .use(slow({
+      url: /\.very-slow$/i,
       delay: 500
     }))
     .use(sendMessage);
@@ -68,7 +41,7 @@ gt.async('.slow requests are slow', function () {
     gt.equal(data[0].statusCode, 200, 'code 200');
     var end = new Date();
     var ms = end - start;
-    gt.ok(ms >= 500 && ms < 550, 'server responded in', ms, 'not in 500ms');
+    gt.ok(ms >= 500 && ms < 600, 'server responded in', ms, 'not in 500ms');
   })
   .fail(function (err) {
     gt.ok(false, err);
@@ -78,7 +51,24 @@ gt.async('.slow requests are slow', function () {
   });
 });
 
-gt.async('other requests are still fast', function () {
+gt.async('.very-slow requests are slow too', function () {
+  var start = new Date();
+  request(url + '/foo.very-slow')
+  .then(function (data) {
+    gt.equal(data[0].statusCode, 200, 'code 200');
+    var end = new Date();
+    var ms = end - start;
+    gt.ok(ms >= 500 && ms < 600, 'server responded in', ms, 'not in 500ms');
+  })
+  .fail(function (err) {
+    gt.ok(false, err);
+  })
+  .finally(function () {
+    gt.start();
+  });
+});
+
+gt.async('very requests are still fast', function () {
   var start = new Date();
   request(url + '/foo.html')
   .then(function (data) {
