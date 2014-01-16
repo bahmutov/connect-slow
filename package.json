@@ -26,6 +26,10 @@
     "time-grunt": "~0.2.8",
     "matchdep": "~0.3.0",
     "grunt": "~0.4.2",
-    "grunt-readme": "~0.4.5"
+    "grunt-readme": "~0.4.5",
+    "connect": "~2.12.0",
+    "gt": "~0.8.29",
+    "q": "~1.0.0",
+    "request": "~2.33.0"
   }
 }
