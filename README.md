@@ -1,4 +1,4 @@
-# connect-delay v0.0.0
+# connect-slow v0.0.0
 
 > Middleware to delay answering requests based on request url, useful to diagnose website behavior based on load delays
 
@@ -22,8 +22,13 @@
 install:
 
 ```
-npm install connect-delay --save
+npm install connect-slow --save
 ```
+
+#### Related projects
+
+* [connect-pause](https://github.com/flesler/connect-pause) - extremely simple
+delay
 
 
 

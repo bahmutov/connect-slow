@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         reporter: require('jshint-stylish')
       },
       default: {
-        src: [ "index.js", "src/*.js" ]
+        src: [ "index.js", "test/test.js" ]
       }
     },
     jsonlint: {
@@ -55,6 +55,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('pre-check', ['deps-ok', 'jsonlint',
     'jshint', 'nice-package', 'complexity']);
-  grunt.registerTask('default', 'pre-check', 'readme');
+  grunt.registerTask('default', ['pre-check', 'readme']);
   grunt.registerTask('release', ['bump-only:patch', 'readme', 'bump-commit']);
 };

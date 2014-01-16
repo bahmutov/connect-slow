@@ -1,3 +1,4 @@
+/*global gt:false*/
 var slow = require('..');
 gt.test('basic info', function () {
   gt.func(slow, 'connect-slow is a function');
@@ -15,7 +16,7 @@ gt.module('without connect-slow tests', {
   setupOnce: function () {
     var app = connect()
     .use(connect.logger('dev'))
-    .use(function(req, res){
+    .use(function sendMessage(req, res) {
       res.end(msg);
     });
 

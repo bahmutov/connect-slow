@@ -4,7 +4,8 @@
   "description": "Middleware to delay answering requests based on request url, useful to diagnose website behavior based on load delays",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt && npm run e2e",
+    "e2e": "node node_modules/gt test/test.js --output"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,11 @@
     "connect": "~2.12.0",
     "gt": "~0.8.29",
     "q": "~1.0.0",
-    "request": "~2.33.0"
+    "request": "~2.33.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-deps-ok": "~0.1.7",
+    "grunt-jsonlint": "~1.0.4",
+    "grunt-complexity": "~0.1.4",
+    "grunt-nice-package": "~0.1.5"
   }
 }
