@@ -7,6 +7,8 @@ var slow = require('..');
 
 var port = 3440;
 var msg = 'hello world';
+var url = 'http://localhost:' + port + '/something';
+
 function sendMessage(req, res) {
   res.end(msg);
 }
@@ -27,7 +29,7 @@ gt.module('connect-slow default options tests', {
 
 gt.async('simple test', function () {
   var start = new Date();
-  request('http://localhost:' + port + '/test.js')
+  request(url)
   .then(function (data) {
     // console.log(JSON.stringify(data, null, 2));
     gt.equal(data[0].statusCode, 200, 'code 200');

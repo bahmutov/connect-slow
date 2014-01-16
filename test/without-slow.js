@@ -1,9 +1,4 @@
 /*global gt:false*/
-var slow = require('..');
-gt.test('basic info', function () {
-  gt.func(slow, 'connect-slow is a function');
-});
-
 var connect = require('connect');
 var q = require('q');
 var request = q.denodeify(require('request'));
