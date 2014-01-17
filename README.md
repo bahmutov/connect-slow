@@ -1,4 +1,4 @@
-# connect-slow v0.1.1
+# connect-slow v0.1.2
 
 > Middleware to delay answering requests based on request url, useful to diagnose website behavior based on load delays
 
