@@ -36,7 +36,8 @@ $ curl http://localhost:4000/foto.jpg    // 2001 ms
 ```
 
 Works with [Connect](http://www.senchalabs.org/connect/),
-[Express](http://expressjs.com/) but not [Koa](http://koajs.com/) yet.
+[Express](http://expressjs.com/). If you use [Koa](http://koajs.com/)
+see [koa-slow](https://github.com/bahmutov/koa-slow).
 
 
 ## Why?
@@ -92,7 +93,8 @@ var app = connect()
 
 * [connect-pause](https://github.com/flesler/connect-pause) - extremely simple
 delay
-
+* [koa-slow](https://github.com/bahmutov/koa-slow) - same funtionality as
+connect-slow for [Koa](http://koajs.com/) server
 
 
 ### Small print
