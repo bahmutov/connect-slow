@@ -35,6 +35,9 @@ $ curl http://localhost:4000/index.html  // 1 ms
 $ curl http://localhost:4000/foto.jpg    // 2001 ms
 ```
 
+Works with [Connect](http://www.senchalabs.org/connect/),
+[Express](http://expressjs.com/) but not [Koa](http://koajs.com/) yet.
+
 
 ## Why?
 
