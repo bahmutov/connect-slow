@@ -1,4 +1,6 @@
-var isRegExp = require('lodash.isregexp');
+var isRegExp = require('lodash.isregexp'),
+    parseUrl = require('url').parse;
+
 module.exports = function connectSlowConfig(options) {
   options = options || {};
   if (options.url) {
@@ -12,17 +14,50 @@ module.exports = function connectSlowConfig(options) {
     throw new Error('Delay should be positive number, not ' + options.delay);
   }
 
-  return function connectSlow(req, res, next) {
-    if (options.url) {
-      if (options.url.test(req.url)) {
-        // slow specific resoures down
-        setTimeout(next, options.delay);
-      } else {
-        next();
+  // Return the query delay if it makes sense for this request, else undefined
+  function getQueryDelay(url) {
+    var delay;
+    if (options.delayQueryParam) {
+      var parsedUrl = parseUrl(url, true),
+          queryDelay = parseInt(parsedUrl.query[options.delayQueryParam]);
+
+      if (queryDelay > 1) {
+        delay = queryDelay;
       }
+    }
+
+    return delay;
+  }
+
+  // Return the url delay if it makes sense for this request, else undefined
+  function getUrlDelay(url) {
+    var delay;
+    if (options.url && !options.url.test(url)) {
+      delay = 0;
+    }
+
+    return delay;
+  }
+
+  function getDelay(url) {
+    var delay = getQueryDelay(url);
+    if (delay === undefined) {
+      delay = getUrlDelay(url);
+    }
+
+    if (delay === undefined) {
+      delay = options.delay;
+    }
+
+    return delay;
+  }
+
+  return function connectSlow(req, res, next) {
+    var delay = getDelay(req.url);
+    if (delay && delay > 0) {
+      setTimeout(next, delay);
     } else {
-      // slow everything down
-      setTimeout(next, options.delay);
+      next();
     }
   };
 };
