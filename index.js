@@ -18,11 +18,13 @@ module.exports = function connectSlowConfig(options) {
   function getQueryDelay(url) {
     var delay;
     if (options.delayQueryParam) {
-      var parsedUrl = parseUrl(url, true),
-          queryDelay = parseInt(parsedUrl.query[options.delayQueryParam]);
+      var parsedUrl = parseUrl(url, true);
 
-      if (queryDelay > 1) {
-        delay = queryDelay;
+      if (parsedUrl.query && parsedUrl.query[options.delayQueryParam]) {
+        var queryDelay = parseInt(parsedUrl.query[options.delayQueryParam]);
+        if (queryDelay > 1) {
+          delay = queryDelay;
+        }
       }
     }
 
