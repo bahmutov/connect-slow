@@ -1,7 +1,7 @@
 {
   "name": "connect-slow",
   "description": "Middleware to delay answering requests based on request url, useful to diagnose website behavior based on load delays",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": {
     "url": "https://github.com/bahmutov/connect-slow/issues"
