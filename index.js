@@ -57,6 +57,9 @@ module.exports = function connectSlowConfig(options) {
   return function connectSlow(req, res, next) {
     var delay = getDelay(req.url);
     if (delay && delay > 0) {
+      if (options.debug) {
+        console.log('Connect-slow: delaying %s ms on url %s', delay, req.url);
+      }
       setTimeout(next, delay);
     } else {
       next();
