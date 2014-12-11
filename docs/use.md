@@ -41,6 +41,16 @@ var app = connect()
     ...
 ```
 
+You can see console log of delayed urls by passing option `debug`
+
+```js
+slow({
+    url: /\.[jpg|jpeg]$/i,
+    delay: 1000,
+    debug: true
+})
+```
+
 ### Related projects
 
 * [connect-pause](https://github.com/flesler/connect-pause) - extremely simple

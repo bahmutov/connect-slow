@@ -6,6 +6,7 @@
   "bugs": {
     "url": "https://github.com/bahmutov/connect-slow/issues"
   },
+  "contributors": [],
   "dependencies": {
     "lodash.isregexp": "2.4.1"
   },
