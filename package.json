@@ -1,7 +1,7 @@
 {
   "name": "connect-slow",
   "description": "Middleware to delay answering requests based on request url, useful to diagnose website behavior based on load delays",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": {
     "url": "https://github.com/bahmutov/connect-slow/issues"
@@ -20,9 +20,10 @@
     "grunt-jsonlint": "1.0.4",
     "grunt-nice-package": "0.9.2",
     "grunt-readme": "0.4.5",
-    "gt": "0.8.45",
+    "gt": "0.8.47",
     "jshint-stylish": "1.0.0",
     "matchdep": "0.3.0",
+    "morgan": "1.5.0",
     "pre-git": "0.1.1",
     "q": "2.0.2",
     "request": "2.51.0",
