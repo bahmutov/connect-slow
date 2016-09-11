@@ -9,8 +9,10 @@ module.exports = function connectSlowConfig(options) {
     }
   }
 
-  options.delay = options.delay || 1000;
-  if (options.delay < 1) {
+  if (options.delay === undefined) {
+    options.delay = 1000;
+  }
+  if (options.delay < 0) {
     throw new Error('Delay should be positive number, not ' + options.delay);
   }
 
@@ -22,7 +24,7 @@ module.exports = function connectSlowConfig(options) {
 
       if (parsedUrl.query && parsedUrl.query[options.delayQueryParam]) {
         var queryDelay = parseInt(parsedUrl.query[options.delayQueryParam]);
-        if (queryDelay > 1) {
+        if (queryDelay > 0) {
           delay = queryDelay;
         }
       }
@@ -56,7 +58,7 @@ module.exports = function connectSlowConfig(options) {
 
   return function connectSlow(req, res, next) {
     var delay = getDelay(req.url);
-    if (delay && delay > 0) {
+    if (delay !== undefined && delay > 0) {
       if (options.debug) {
         console.log('Connect-slow: delaying %s ms on url %s', delay, req.url);
       }
