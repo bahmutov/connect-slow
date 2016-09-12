@@ -1,8 +1,8 @@
 {
   "name": "connect-slow",
   "description": "Middleware to delay answering requests based on request url, useful to diagnose website behavior based on load delays",
-  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "version": "0.0.0",
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": {
     "url": "https://github.com/bahmutov/connect-slow/issues"
   },
@@ -38,13 +38,13 @@
   "homepage": "https://github.com/bahmutov/connect-slow",
   "keywords": [
     "connect",
-    "middleware",
     "delay",
-    "slow",
-    "testing",
-    "server",
     "express",
-    "koa"
+    "koa",
+    "middleware",
+    "server",
+    "slow",
+    "testing"
   ],
   "license": "MIT",
   "main": "index.js",
@@ -54,8 +54,8 @@
     "url": "https://github.com/bahmutov/connect-slow.git"
   },
   "scripts": {
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "grunt && npm run unit",
-    "unit": "mocha test/*-spec.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "unit": "mocha test/*-spec.js"
   }
 }
