@@ -58,8 +58,8 @@
   },
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "grunt && npm run unit",
-    "unit": "mocha test/*-spec.js",
-    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";"
+    "unit": "mocha test/*-spec.js"
   }
 }
