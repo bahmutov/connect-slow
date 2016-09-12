@@ -1,9 +1,16 @@
+sudo: false
 language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
 node_js:
-  - "0.10"
-  - "0.11"
-branches:
-  only:
-    - master
+  - '6'
 before_script:
-  - npm install -g grunt-cli
+  - npm prune
+after_success:
+  - npm run semantic-release
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/

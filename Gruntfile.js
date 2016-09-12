@@ -4,20 +4,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      default: {
-        src: [ "index.js", "test/test.js" ]
-      }
-    },
-    jsonlint: {
-      all: {
-        src: ['*.json']
-      }
-    },
     complexity: {
       default: grunt.file.readJSON('complexity.json')
     },
@@ -53,8 +39,7 @@ module.exports = function(grunt) {
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('pre-check', ['deps-ok', 'jsonlint',
-    'jshint', 'nice-package', 'complexity']);
+  grunt.registerTask('pre-check', ['deps-ok', 'nice-package', 'complexity']);
   grunt.registerTask('default', ['pre-check', 'readme']);
   grunt.registerTask('release', ['bump-only:patch', 'readme', 'bump-commit']);
 };
